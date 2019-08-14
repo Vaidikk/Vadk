@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans.xsd ">
+ 
+ <bean id="guitar" class="com.zensar.spring.instruments.Guitar"></bean>
+ <bean id="voilin" class="com.zensar.spring.instruments.Voilin"></bean>
+ 
+ <bean id="Sansa" class="com.zensar.spring.performers.Instrumentalist">
+ 	<property name="song" value="Shotgun"></property>
+ 	<property name="instrument" ref="guitar"></property>
+ </bean>
+ 
+ <bean id="Arya" parent="Sansa"></bean>
+ 
+ <bean id="Jon" parent="Arya">
+ 	<property name="song" value="Budapest"></property>
+ </bean>
+ 
+ <bean id="Danny" parent="Jon">
+ 	<property name="instrument" ref="voilin"></property>
+ </bean>
+ 
+ </beans>

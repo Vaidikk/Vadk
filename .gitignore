@@ -1,0 +1,14 @@
+#Ignore metadata
+*/.metadata/
+
+#Ignore ZigmaTempRepo, already on github
+ZigmaTempRepo/
+
+#Ignore Apache, coz why not
+Apache/
+
+#Ignore Angular, too big, have to learn by myself anyway
+Angular/
+
+#Ignore .git files, just might work
+.git/

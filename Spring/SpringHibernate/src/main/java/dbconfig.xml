@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans" 
+xmlns:ctx="http://www.springframework.org/schema/context" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans.xsd 
+http://www.springframework.org/schema/context spring-context.xsd 
+http://www.springframework.org/schema/tx spring-tx.xsd ">
+	
+	<ctx:annotation-config></ctx:annotation-config>
+	<ctx:component-scan base-package="com.zensar"></ctx:component-scan>
+	
+	<b:bean id="dbSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<b:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></b:property>
+		<b:property name="url" value="jdbc:mysql://localhost:3306/spring_test"></b:property>
+		<b:property name="username" value="root"></b:property>
+		<b:property name="password" value="root"></b:property>
+	</b:bean>
+	
+	<b:bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<b:property name="dataSource" ref="dbSource"></b:property>
+		<b:property name="HibernateProperties">
+			<b:props>
+				<b:prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</b:prop>
+				<b:prop key="hibernate.show_sql">true</b:prop>
+				<b:prop key="hibernate.connection.pool_size">1000</b:prop>
+			</b:props>
+		</b:property>
+		<b:property name="packagesToScan">
+			<b:list>
+				<b:value>com.zensar.entities</b:value>
+			</b:list>
+		</b:property>
+	</b:bean>
+	
+	<b:bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<b:property name="sessionFactory" ref="sessionFactory"></b:property>
+	</b:bean>
+	
+	<tx:annotation-driven/>
+	<b:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<b:property name="sessionFactory" ref="sessionFactory"></b:property>
+	</b:bean>
+	
+</b:beans>

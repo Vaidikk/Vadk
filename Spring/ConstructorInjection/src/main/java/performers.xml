@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans.xsd ">
+
+	<bean id="Jon" class="com.zensar.spring.performers.Juggler">
+		<constructor-arg value="3"></constructor-arg>
+	</bean>
+	
+	<bean id="haiku" class="com.zensar.spring.poems.Haiku"></bean>
+	
+	<bean id="Danny" class="com.zensar.spring.performers.PoeticJuggler">
+		<constructor-arg value="4"></constructor-arg>
+		<constructor-arg ref="haiku"></constructor-arg>
+	</bean>
+
+</beans>
